@@ -69,38 +69,39 @@ Base URI for forms is http://localhost:3000/forms
 	<td>POST</td>
 	<td>/forms</td>
 	<td>
-		Creates a form.<br />
-		Returns HTTP status 201 if created.<br /><br />
+		Creates a form. Returns HTTP status 201 if created.<br />
+		JSON body:
 		
-		JSON body:<br />
-	    {<br />
-	      name : 'Form name',<br />
-	      model : {}<br />
+		<pre>
+	    {
+	      name : 'Form name',
+	      model : {}
 	    }
+	    </pre>
 	</td>
 </tr>
 <tr>
 	<td>DELETE</td>
 	<td>/forms/:id</td>
 	<td>
-		Deletes a form.<br />
-		Returns HTTP status 200 if a form with this id exists and has been deleted correctly.
+		Deletes a form. Returns HTTP status 200 if an existing form with this id was deleted.
 	</td>
 </tr>
 <tr>
 	<td>POST</td>
 	<td>/forms/:id</td>
-	<td><pre>
-		Updates an existing form.
+	<td>
+		Updates an existing form.<br />
 		JSON body:
+		<pre>
     	{
       		name : 'Form name',
       		model : {}
     	}
-
-		The body should only contain fields to modify.
-		Returns HTTP status 201 if updated.
 		</pre>
+		
+		The body should only contain fields to modify.<br />
+		Returns HTTP status 201 if updated.
 	</td>
 </tr>
 </table>
@@ -135,16 +136,18 @@ Base URI for form instances is http://localhost:3000/instances
 	<td>POST</td>
 	<td>/instances</td>
 	<td>
-		Creates a form instance.
+		Creates a form instance.<br />
 		JSON body:
+		<pre>
     	{
       		name : 'Form Instance name',
       		description : 'A description of the instance',
       		form_id : 'the form model ID',
       		model : {}
     	}
-
-		Returns HTTP status 201 if created.
+		</pre>
+		
+		Returns HTTP status 201 if created.<br />
 		Notice that a newly created instance is considered as "open".
 	</td>
 </tr>
@@ -152,27 +155,29 @@ Base URI for form instances is http://localhost:3000/instances
 	<td>DELETE</td>
 	<td>/instances/:id</td>
 	<td>
-		Deletes a form instance.
-		Returns HTTP status 200 if a form instance with this id exists and has been deleted correctly.
+		Deletes a form instance. Returns HTTP status 200 if an existing instance with this ID was deleted.
 	</td>
 </tr>
 <tr>
 	<td>POST</td>
 	<td>/instances/:id</td>
 	<td>
-		Updates an existing instance.
+		Updates an existing instance.<br />
 		JSON body:
+		<pre>
     	{
       		name : 'Form Instance name',
       		description : 'A description of the instance',
       		open : 'true or false',
       		model : {}
     	}
+    	</pre>
 
-		The body should only contain fields to modify.  
-		Although *form_id* can be modified, it should not make sense.  
-		*open* indicates the status of an instance, i.e. if people can fill-in this form instance. 
+		The body should only contain fields to modify.<br />  
+		Although *form_id* can be modified, it should not make sense.<br />  
+		*open* indicates the status of an instance, i.e. if people can fill-in this form instance.
 	
+		<br /><br />
 		Returns HTTP status 201 if updated.
 	</td>
 </tr>
