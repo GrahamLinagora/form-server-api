@@ -69,7 +69,7 @@ exports.delete = function(req, res) {
   Form.findByIdAndRemove(req.params.id, function(err, form) {
     if (err) return res.send(500, err);
     if (!form) return res.json(404, {error : 'Can not find form with ID:' + req.params.id});
-    res.send(200);
+    res.send(204);
   });
 };
 
