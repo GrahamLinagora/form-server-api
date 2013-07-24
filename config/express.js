@@ -4,7 +4,8 @@
 // Christophe Hamerling - chamerling@linagora.com
 //
 
-var express = require('express');
+var express = require('express')
+  fs = require('fs');
 
 module.exports = function (app, config) {
 
@@ -53,8 +54,14 @@ module.exports = function (app, config) {
     // app.use(passport.initialize())
     // app.use(passport.session())
 
+    // load local middlewares
+    var middlewares = __dirname + '/middleware';
+    fs.readdirSync(middlewares).forEach(function(file) {
+      require(middlewares + '/' + file)(app, config);
+    });
+
     // routes should be at the last
-    app.use(app.router)
+    app.use(app.router);
 
     // assume "not found" in the error msgs
     // is a 404. this is somewhat silly, but

@@ -6,6 +6,7 @@
 
 module.exports = {
   development: {
+    allowedDomains: ['http://localhost:3001'],
     port: process.env.PORT || 3000,
     host: process.env.HOSTNAME || 'localhost',
     mongo: {
@@ -14,6 +15,7 @@ module.exports = {
     }
   },
   test: {
+    allowedDomains: ['http://localhost:3001'],
     port: process.env.PORT || 3001,
     host: process.env.HOSTNAME || 'localhost',
     mongo: {
