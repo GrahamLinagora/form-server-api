@@ -4,7 +4,7 @@
 // Vincent Zurczak - vzurczak@linagora.com
 //
 
-var mongoose = require('mongoose'), Form = mongoose.model('Instance')
+var mongoose = require('mongoose'), Instance = mongoose.model('Instance')
 
 /**
  * Get the list of form instances
@@ -79,7 +79,7 @@ exports.delete = function(req, res) {
  * @param res
  */
 exports.update = function(req, res) {
-  Form.findByIdAndUpdate(req.params.id, req.body,function(err, form) {
+  Instance.findByIdAndUpdate(req.params.id, req.body,function(err, form) {
     if (err) return res.send(500, err);
     if (!form) return res.json(404, {error : 'Can not find a form instance with ID:' + req.params.id});
     res.send(200);
