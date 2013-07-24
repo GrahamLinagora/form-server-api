@@ -69,8 +69,9 @@ Base URI for forms is http://localhost:3000/forms
 	<td>POST</td>
 	<td>/forms</td>
 	<td>
-		Creates a form.
+		Creates a form.  
 		Returns HTTP status 201 if created.
+		
 		JSON body:
 	    {
 	      name : 'Form name',
