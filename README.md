@@ -141,7 +141,7 @@ Base URI for form instances is http://localhost:3000/instances
 		<pre>
     	{
       		name : 'Form Instance name',
-      		description : 'A description of the instance',
+      		description : 'Instance Description',
       		form_id : 'the form model ID',
       		model : {}
     	}
@@ -167,15 +167,15 @@ Base URI for form instances is http://localhost:3000/instances
 		<pre>
     	{
       		name : 'Form Instance name',
-      		description : 'A description of the instance',
+      		description : 'Instance Description',
       		open : 'true or false',
       		model : {}
     	}
     	</pre>
 
 		The body should only contain fields to modify.<br />  
-		Although *form_id* can be modified, it should not make sense.<br />  
-		*open* indicates the status of an instance, i.e. if people can fill-in this form instance.
+		Although 'form_id' can be modified, it should not make sense.<br />  
+		'open' indicates the status of an instance, i.e. if people can fill-in this form instance.
 	
 		<br /><br />
 		Returns HTTP status 201 if updated.
