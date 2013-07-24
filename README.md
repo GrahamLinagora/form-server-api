@@ -39,50 +39,150 @@ $ node server.js
 $ npm test
 ```
 
-## API
 
-Base URI for forms is at http://localhost:3000/forms
+## API for Form Models
 
-### Get Forms
+Base URI for forms is http://localhost:3000/forms
 
-    HTTP GET /forms
+<table>
+<tr>
+	<th>Method</th>
+	<th>URL</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td>GET</td>
+	<td>/forms</td>
+	<td>Returns a JSON array of forms.</td>
+</tr>
+<tr>
+	<td>GET</td>
+	<td>/forms/:id</td>
+	<td>Finds a form by ID and returns it as JSON.</td>
+</tr>
+<tr>
+	<td>GET</td>
+	<td>/forms?name=:name</td>
+	<td>Returns a JSON array of forms with the given name.</td>
+</tr>
+<tr>
+	<td>POST</td>
+	<td>/forms</td>
+	<td>
+		Creates a form. Returns HTTP status 201 if created.<br />
+		JSON body:
+		
+		<pre>
+	    {
+	      name : 'Form name',
+	      model : {}
+	    }
+	    </pre>
+	</td>
+</tr>
+<tr>
+	<td>DELETE</td>
+	<td>/forms/:id</td>
+	<td>
+		Deletes a form. Returns HTTP status 200 if an existing form with this id was deleted.
+	</td>
+</tr>
+<tr>
+	<td>POST</td>
+	<td>/forms/:id</td>
+	<td>
+		Updates an existing form.<br />
+		JSON body:
+		<pre>
+    	{
+      		name : 'Form name',
+      		model : {}
+    	}
+		</pre>
+		
+		The body should only contain fields to modify.<br />
+		Returns HTTP status 201 if updated.
+	</td>
+</tr>
+</table>
 
-Returns a JSON array of forms.
 
-### Get a form
+## API for Form Instances
 
-#### From ID
+Base URI for form instances is http://localhost:3000/instances
 
-    HTTP GET /forms/:id
+<table>
+<tr>
+	<th>Method</th>
+	<th>URL</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td>GET</td>
+	<td>/instances</td>
+	<td>Returns a JSON array of form instances.</td>
+</tr>
+<tr>
+	<td>GET</td>
+	<td>/instances/:id</td>
+	<td>Finds a form instance by ID and returns it as JSON.</td>
+</tr>
+<tr>
+	<td>GET</td>
+	<td>/instances?form_id=:form_id</td>
+	<td>Returns a JSON array if instances associated with the form ID were found.</td>
+</tr>
+<tr>
+	<td>POST</td>
+	<td>/instances</td>
+	<td>
+		Creates a form instance.<br />
+		JSON body:
+		<pre>
+    	{
+      		name : 'Form Instance name',
+      		description : 'Instance Description',
+      		form_id : 'the form model ID',
+      		model : {}
+    	}
+		</pre>
+		
+		Returns HTTP status 201 if created.<br />
+		Notice that a newly created instance is considered as "open".
+	</td>
+</tr>
+<tr>
+	<td>DELETE</td>
+	<td>/instances/:id</td>
+	<td>
+		Deletes a form instance. Returns HTTP status 200 if an existing instance with this ID was deleted.
+	</td>
+</tr>
+<tr>
+	<td>POST</td>
+	<td>/instances/:id</td>
+	<td>
+		Updates an existing instance.<br />
+		JSON body:
+		<pre>
+    	{
+      		name : 'Form Instance name',
+      		description : 'Instance Description',
+      		open : 'true or false',
+      		model : {}
+    	}
+    	</pre>
 
-Returns a form as JSON.
+		The body should only contain fields to modify.<br />  
+		Although 'form_id' can be modified, it should not make sense.<br />  
+		'open' indicates the status of an instance, i.e. if people can fill-in this form instance.
+	
+		<br /><br />
+		Returns HTTP status 201 if updated.
+	</td>
+</tr>
+</table>
 
-#### From its name
-
-    HTTP GET /forms?name=:name
-
-Returns a JSON array if form with given name are found.
-
-### Create a form
-
-    HTTP POST /forms
-
-With the JSON as body:
-
-    {
-      name : 'Form name',
-      model : {
-
-      }
-    }
-
-Returns HTTP status 201 if created.
-
-### Delete a form
-
-    HTTP DELETE /forms/:id
-
-Returns HTTP status 200 if a form with this id exists and has been deleted correctly.
 
 ## Samples
 

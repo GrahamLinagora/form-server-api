@@ -7,8 +7,7 @@
 //
 
 /**
- * Init routes for forms
- *
+ * Initialize routes for forms and instances.
  * @param app
  */
 module.exports = function(app) {
@@ -20,8 +19,4 @@ module.exports = function(app) {
   app.post('/forms', forms.create);
   app.del('/forms/:id', forms.delete);
   app.post('/forms/:id', forms.update);
-
-  // TODO : Load form from param and update routes above to use the request param.
-  //app.param('id', forms.form);
-
 }
