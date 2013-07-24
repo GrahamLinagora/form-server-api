@@ -20,7 +20,8 @@
     "request": "latest",
     "express": "latest",
     "mongoose": "3.6.8",
-    "mongoose-lifecycle": "1.0.0"
+    "mongoose-lifecycle": "1.0.0",
+    "async": "latest"
   },
   "devDependencies": {
     "supertest": "latest",

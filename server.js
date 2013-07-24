@@ -39,3 +39,6 @@ app.listen(app.get('port'), function(err) {
   }
   console.log('Form server API started on', app.get('port'))
 });
+
+// expose app
+exports = module.exports = app
