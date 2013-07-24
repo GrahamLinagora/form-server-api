@@ -69,27 +69,28 @@ Base URI for forms is http://localhost:3000/forms
 	<td>POST</td>
 	<td>/forms</td>
 	<td>
-		Creates a form.  
-		Returns HTTP status 201 if created.
+		Creates a form.<br />
+		Returns HTTP status 201 if created.<br /><br />
 		
-		JSON body:
-	    {
-	      name : 'Form name',
-	      model : {}
+		JSON body:<br />
+	    {<br />
+	      name : 'Form name',<br />
+	      model : {}<br />
 	    }
 	</td>
 </tr>
 <tr>
 	<td>DELETE</td>
 	<td>/forms/:id</td>
-	<td>Deletes a form.
+	<td>
+		Deletes a form.<br />
 		Returns HTTP status 200 if a form with this id exists and has been deleted correctly.
 	</td>
 </tr>
 <tr>
 	<td>POST</td>
 	<td>/forms/:id</td>
-	<td>
+	<td><pre>
 		Updates an existing form.
 		JSON body:
     	{
@@ -99,6 +100,7 @@ Base URI for forms is http://localhost:3000/forms
 
 		The body should only contain fields to modify.
 		Returns HTTP status 201 if updated.
+		</pre>
 	</td>
 </tr>
 </table>
