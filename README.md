@@ -42,133 +42,138 @@ $ npm test
 
 ## API for Form Models
 
-Base URI for forms is at http://localhost:3000/forms
+Base URI for forms is http://localhost:3000/forms
 
-### Get Forms
+<table>
+<tr>
+	<th>Method</th>
+	<th>URL</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td>GET</td>
+	<td>/forms</td>
+	<td>Returns a JSON array of forms.</td>
+</tr>
+<tr>
+	<td>GET</td>
+	<td>/forms/:id</td>
+	<td>Finds a form by ID and returns it as JSON.</td>
+</tr>
+<tr>
+	<td>GET</td>
+	<td>/forms?name=:name</td>
+	<td>Returns a JSON array of forms with the given name.</td>
+</tr>
+<tr>
+	<td>POST</td>
+	<td>/forms</td>
+	<td>
+		Creates a form.
+		Returns HTTP status 201 if created.
+		JSON body:
+	    {
+	      name : 'Form name',
+	      model : {}
+	    }
+	</td>
+</tr>
+<tr>
+	<td>DELETE</td>
+	<td>/forms/:id</td>
+	<td>Deletes a form.
+		Returns HTTP status 200 if a form with this id exists and has been deleted correctly.
+	</td>
+</tr>
+<tr>
+	<td>POST</td>
+	<td>/forms/:id</td>
+	<td>
+		Updates an existing form.
+		JSON body:
+    	{
+      		name : 'Form name',
+      		model : {}
+    	}
 
-    HTTP GET /forms
+		The body should only contain fields to modify.
+		Returns HTTP status 201 if updated.
+	</td>
+</tr>
+</table>
 
-Returns a JSON array of forms.
-
-### Get a form
-
-#### From ID
-
-    HTTP GET /forms/:id
-
-Returns a form as JSON.
-
-#### From its name
-
-    HTTP GET /forms?name=:name
-
-Returns a JSON array if form with given name are found.
-
-### Create a form
-
-    HTTP POST /forms
-
-With the JSON as body:
-
-    {
-      name : 'Form name',
-      model : {
-
-      }
-    }
-
-Returns HTTP status 201 if created.
-
-### Delete a form
-
-    HTTP DELETE /forms/:id
-
-Returns HTTP status 200 if a form with this id exists and has been deleted correctly.
-
-### Update a form
-
-    HTTP POST /forms/:id
-    
-With the JSON as body:
-
-    {
-      name : 'Form name',
-      model : {
-
-      }
-    }
-
-The body should only contain fields to modify.
-Returns HTTP status 201 if updated.
 
 ## API for Form Instances
 
-Base URI for forms is at http://localhost:3000/instances
+Base URI for form instances is http://localhost:3000/instances
 
-### Get Form Instancess
+<table>
+<tr>
+	<th>Method</th>
+	<th>URL</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td>GET</td>
+	<td>/instances</td>
+	<td>Returns a JSON array of form instances.</td>
+</tr>
+<tr>
+	<td>GET</td>
+	<td>/instances/:id</td>
+	<td>Finds a form instance by ID and returns it as JSON.</td>
+</tr>
+<tr>
+	<td>GET</td>
+	<td>/instances?form_id=:form_id</td>
+	<td>Returns a JSON array if instances associated with the form ID were found.</td>
+</tr>
+<tr>
+	<td>POST</td>
+	<td>/instances</td>
+	<td>
+		Creates a form instance.
+		JSON body:
+    	{
+      		name : 'Form Instance name',
+      		description : 'A description of the instance',
+      		form_id : 'the form model ID',
+      		model : {}
+    	}
 
-    HTTP GET /instances
+		Returns HTTP status 201 if created.
+		Notice that a newly created instance is considered as "open".
+	</td>
+</tr>
+<tr>
+	<td>DELETE</td>
+	<td>/instances/:id</td>
+	<td>
+		Deletes a form instance.
+		Returns HTTP status 200 if a form instance with this id exists and has been deleted correctly.
+	</td>
+</tr>
+<tr>
+	<td>POST</td>
+	<td>/instances/:id</td>
+	<td>
+		Updates an existing instance.
+		JSON body:
+    	{
+      		name : 'Form Instance name',
+      		description : 'A description of the instance',
+      		open : 'true or false',
+      		model : {}
+    	}
 
-Returns a JSON array of form instances.
-
-### Get a form
-
-#### From ID
-
-    HTTP GET /instances/:id
-
-Returns a form instance as JSON.
-
-#### From the form model ID
-
-    HTTP GET /instances?form_id=:form_id
-
-Returns a JSON array if instances associated with the form ID were found.
-
-### Create a form instance
-
-    HTTP POST /instances
-
-With the JSON as body:
-
-    {
-      name : 'Form Instance name',
-      description : 'A description of the instance',
-      form_id : 'the form model ID',
-      model : {
-
-      }
-    }
-
-Returns HTTP status 201 if created.
-Notice that a newly created instance is considered as "open".
-
-### Delete a form instance
-
-    HTTP DELETE /instances/:id
-
-Returns HTTP status 200 if a form instance with this id exists and has been deleted correctly.
-
-### Update a form instance
-
-    HTTP POST /instances/:id
-    
-With the JSON as body:
-
-    {
-      name : 'Form Instance name',
-      description : 'A description of the instance',
-      open : 'true or false',
-      model : {
-
-      }
-    }
-
-The body should only contain fields to modify.  
-Although *form_id* can be modified, it should not make sense.  
-*open* indicates the status of an instance, i.e. if people can fill-in this form instance. 
-
-Returns HTTP status 201 if updated.
+		The body should only contain fields to modify.  
+		Although *form_id* can be modified, it should not make sense.  
+		*open* indicates the status of an instance, i.e. if people can fill-in this form instance. 
+	
+		Returns HTTP status 201 if updated.
+	</td>
+</tr>
+</table>
 
 
 ## Samples
