@@ -1,5 +1,7 @@
 # form-server-api
 
+[![Build Status](https://travis-ci.org/linagora-open-paas/form-server-api.png?branch=master)](https://travis-ci.org/linagora-open-paas/form-server-api)
+
 REST API to manipulate form models and instances.
 Node.js based form server used to store and retrieve JSON serialized HTML forms.
 
