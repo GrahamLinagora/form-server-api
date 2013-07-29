@@ -22,5 +22,41 @@ FormSchema.pre('save', function(next) {
   next();
 });
 
+/**
+ * Statics
+ *
+ * @type {{load: Function, list: Function}}
+ */
+FormSchema.statics = {
+
+  /**
+   * Find form by id
+   *
+   * @param {ObjectId} id
+   * @param {Function} cb
+   * @api private
+   */
+  load: function (id, cb) {
+    this.findOne({ _id : id })
+      .exec(cb)
+  },
+
+  /**
+   * Get a list of forms based on criteria
+   *
+   * @param options
+   * @param cb
+   */
+  list: function (options, cb) {
+    var criteria = options.criteria || {}
+
+    this.find(criteria)
+      .sort({'published_on': -1}) // sort by date
+      .limit(options.perPage)
+      .skip(options.perPage * options.page)
+      .exec(cb)
+  }
+}
+
 FormSchema.plugin(require('mongoose-lifecycle'));
 module.exports = mongoose.model('Form', FormSchema);

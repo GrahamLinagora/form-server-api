@@ -80,6 +80,31 @@ describe('Forms', function () {
     })
   })
 
+  describe('Static Methods : Load', function(done) {
+    var id;
+    before(function(done) {
+      var form = new Form(
+        {
+          name : 'staticload',
+          text : 'foo'
+        });
+      form.save(function(err, form) {
+        should.not.exist(err);
+        id = form._id;
+        done();
+      });
+    })
+
+    it('Should load form form ID', function(done) {
+      Form.load(id, function(err, form) {
+        should.not.exist(err);
+        form.should.be.an.instanceof(Form);
+        form._id.should.eql(id);
+        done();
+      });
+    });
+  })
+
   after(function (done) {
     require('./helper').clearDb(done)
   })
