@@ -186,6 +186,77 @@ Base URI for form instances is http://localhost:3000/instances
 </tr>
 </table>
 
+## API for Form Results
+
+Note : Results are linked to instances.
+
+Base URI for form instances is http://localhost:3000/results
+
+<table>
+<tr>
+	<th>Method</th>
+	<th>URL</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td>GET</td>
+	<td>/results</td>
+	<td>Returns a JSON array of form results.</td>
+</tr>
+<tr>
+	<td>GET</td>
+	<td>/results/:id</td>
+	<td>Finds a form result by ID and returns it as JSON.</td>
+</tr>
+<tr>
+	<td>GET</td>
+	<td>/results?instance_id=:instance_id</td>
+	<td>Returns a JSON array if results for the given form instance.</td>
+</tr>
+<tr>
+	<td>POST</td>
+	<td>/results</td>
+	<td>
+		Creates a form result.<br />
+		JSON body:
+		<pre>
+    	{
+      		instance_id : 'the instance model ID',
+      		paramA : 'valueA',
+      		paramB : 'valueB'
+    	}
+		</pre>
+
+		Returns HTTP status 201 if created.<br />
+	</td>
+</tr>
+<tr>
+	<td>DELETE</td>
+	<td>/results/:id</td>
+	<td>
+		Deletes a form result. Returns HTTP status 200 if an existing result with this ID was deleted.
+	</td>
+</tr>
+<tr>
+	<td>POST</td>
+	<td>/results/:id</td>
+	<td>
+		Updates an existing result.<br />
+		JSON body:
+		<pre>
+    	{
+    	    paramC : 'valueC'
+    	}
+    	</pre>
+
+		The body should only contain fields to modify or to add.<br />
+		Although 'instance_id' can be modified, it should not make sense.<br />
+		<br /><br />
+		Returns HTTP status 201 if updated.
+	</td>
+</tr>
+</table>
+
 
 ## Samples
 

@@ -8,6 +8,7 @@ var mongoose = require('mongoose')
   , async = require('async')
   , Form = mongoose.model('Form')
   , Instance = mongoose.model('Instance')
+  , Result = mongoose.model('Result')
 
 /**
  * Clear database
@@ -27,6 +28,11 @@ exports.clearDb = function (done) {
     function (cb) {
       Instance.find().exec(function (err, instances) {
         async.forEach(instances, callback, cb)
+      })
+    },
+    function (cb) {
+      Result.find().exec(function(err, results) {
+        async.forEach(results, callback, cb)
       })
     }
   ], done)
