@@ -210,7 +210,7 @@ Base URI for form instances is http://localhost:3000/results
 </tr>
 <tr>
 	<td>GET</td>
-	<td>/results?instance_id=:instance_id</td>
+	<td>/results?instance=:instance_id</td>
 	<td>Returns a JSON array if results for the given form instance.</td>
 </tr>
 <tr>
@@ -221,7 +221,7 @@ Base URI for form instances is http://localhost:3000/results
 		JSON body:
 		<pre>
     	{
-      		instance_id : 'the instance model ID',
+      		instance : 'the instance model ID',
       		paramA : 'valueA',
       		paramB : 'valueB'
     	}
