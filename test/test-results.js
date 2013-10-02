@@ -32,7 +32,7 @@ describe('Results', function () {
     it('should respond with Content-Type application/json', function (done) {
       request(app)
         .get('/results')
-        .expect('Content-Type', 'application/json')
+        .expect('Content-Type', /json/)
         .expect(200)
         .end(done)
     })
