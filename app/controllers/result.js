@@ -15,8 +15,8 @@ var mongoose = require('mongoose')
  */
 exports.list = function(req, res) {
   var query = {};
-  if( req.query.instance_id ) {
-    query.instance_id = req.query.instance_id;
+  if(req.query.instance) {
+    query.instance = req.query.instance;
   }
 
   Result.find(query, function (err, results) {
