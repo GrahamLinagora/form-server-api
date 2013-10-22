@@ -5,8 +5,7 @@
 //
 
 var express = require('express')
-  fs = require('fs'),
-	path = require('path');
+  fs = require('fs');
 
 module.exports = function (app, config) {
 
@@ -21,9 +20,8 @@ module.exports = function (app, config) {
 
   app.set('port', config.port);
 
-	//declare generated resources directory
-	app.use(express.static(path.join(__dirname, '../resources/generated')));
-	app.use(express.static(path.join(__dirname, '../resources/static')));
+  // no static stuff to server
+  // app.use(express.static(config.root + '/public'))
 
   // don't use logger for test env
   if (process.env.NODE_ENV !== 'test') {
@@ -38,7 +36,6 @@ module.exports = function (app, config) {
   app.configure(function () {
     // bodyParser should be above methodOverride
     app.use(express.bodyParser())
-
     app.use(express.methodOverride())
 
     // express/mongo session storage

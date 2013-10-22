@@ -19,25 +19,14 @@ exports.list = function(req, res) {
   if (req.query.name) {
     query.name = req.query.name;
   }
-	if (req.query.older) {
-		query.created_at = { $lt : req.query.older };
-	}
 
-	var handleQueryResponse = function (err, forms) {
-		if (err) {
-		  res.send(500, err);
-		} else {
-		  res.json(forms);
-  	}
-	};
-
-	if (req.query.limit) {
-		var q = Form.find(query).limit(req.query.limit);
-		q.execFind(handleQueryResponse);
-	}
-	else {
-		Form.find(query, handleQueryResponse);
-  }
+  Form.find(query, function (err, forms) {
+    if (err) {
+      res.send(500, err);
+    } else {
+      res.json(forms);
+    }
+  })
 }
 
 /**
@@ -92,11 +81,7 @@ exports.delete = function(req, res) {
  */
 exports.update = function(req, res) {
   Form.findByIdAndUpdate(req.params.id, req.body,function(err, form) {
-    if (err) {
-//TODO remove trace
-	console.log(err);
-		return res.send(500, err);
-}
+    if (err) return res.send(500, err);
     if (!form) return res.json(404, {error : 'Can not find form with ID:' + req.params.id});
     res.send(200);
   });
